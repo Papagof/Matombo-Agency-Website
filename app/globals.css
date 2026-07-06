@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Warm editorial light palette */
+    --background: 40 33% 98%;
+    --foreground: 25 25% 12%;
+
+    --card: 40 30% 99%;
+    --card-foreground: 25 25% 12%;
+
+    --primary: 160 40% 16%; /* deep emerald */
+    --primary-foreground: 40 33% 98%;
+
+    --secondary: 34 30% 92%;
+    --secondary-foreground: 25 25% 16%;
+
+    --muted: 34 24% 93%;
+    --muted-foreground: 25 12% 40%;
+
+    --accent: 160 35% 22%;
+    --accent-foreground: 40 33% 98%;
+
+    --gold: 38 55% 52%; /* warm brass/gold */
+    --gold-foreground: 25 30% 12%;
+
+    --destructive: 0 65% 48%;
+    --destructive-foreground: 40 33% 98%;
+
+    --border: 32 20% 86%;
+    --input: 32 20% 86%;
+    --ring: 160 40% 16%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Deep charcoal / emerald / gold */
+    --background: 160 14% 7%;
+    --foreground: 40 25% 92%;
+
+    --card: 160 12% 10%;
+    --card-foreground: 40 25% 92%;
+
+    --primary: 152 42% 62%; /* luminous emerald */
+    --primary-foreground: 160 30% 8%;
+
+    --secondary: 160 10% 15%;
+    --secondary-foreground: 40 25% 92%;
+
+    --muted: 160 8% 14%;
+    --muted-foreground: 40 10% 62%;
+
+    --accent: 152 30% 40%;
+    --accent-foreground: 40 25% 95%;
+
+    --gold: 40 60% 60%;
+    --gold-foreground: 160 30% 8%;
+
+    --destructive: 0 60% 55%;
+    --destructive-foreground: 40 25% 95%;
+
+    --border: 160 10% 18%;
+    --input: 160 10% 18%;
+    --ring: 152 42% 62%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "kern", "liga", "calt";
+  }
+  ::selection {
+    @apply bg-gold/30;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+  }
+}
