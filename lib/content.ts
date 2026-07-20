@@ -45,7 +45,7 @@ export const hero = {
   eyebrow: "Hospitality growth studio",
   title: "We fill your rooms, seats, and units.",
   subtitle:
-    "Matombo Agency is the marketing partner for boutique hotels, shortlets, restaurants, lounges, and property developers who want fewer empty nights, tables, and listings — and more revenue that lands directly.",
+    "Matombo Agency is the marketing partner for hotels, shortlets, restaurants, lounges, and property developers who want fewer empty nights, tables, and listings — and more revenue that lands directly. We turn attention into revenue — built specifically for hospitality and real estate brands that want to win their market.",
   primaryCta: { label: "Book a Strategy Call", href: "/contact" },
   secondaryCta: { label: "See our work", href: "/#work" },
   images: [
