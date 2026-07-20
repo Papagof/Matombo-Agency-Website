@@ -318,7 +318,7 @@ export const testimonials: Testimonial[] = [
   {
     quote:
       "Our midweek covers used to keep me up at night. Now there’s a waitlist for the chef’s table on a Tuesday. They understand hospitality.",
-    name: "Kate Effiong",
+    name: "Ellty Lokoja",
     role: "Owner",
     brand: "Maréa Lounge",
     image:
@@ -327,7 +327,7 @@ export const testimonials: Testimonial[] = [
   {
     quote:
       "We were sold out three months before the show home opened. Matombo built the demand while we were still pouring concrete.",
-    name: "Ellty Lokoja",
+    name: "Kate Effiong",
     role: "Development Director",
     brand: "Northbank Residences",
     image:
