@@ -32,9 +32,9 @@ export const siteConfig = {
 export type NavItem = { label: string; href: string };
 
 export const navItems: NavItem[] = [
-  { label: "Services", href: "/#services" },
-  { label: "Industries", href: "/#industries" },
-  { label: "Work", href: "/#work" },
+  { label: "Services", href: "/services" },
+  { label: "Industries", href: "/industries" },
+  { label: "Work", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Pricing", href: "/pricing" },
   { label: "Blog", href: "/blog" },
@@ -47,7 +47,7 @@ export const hero = {
   subtitle:
     "Matombo Agency is the marketing partner for hotels, shortlets, restaurants, lounges, and property developers who want fewer empty nights, tables, and listings — and more revenue that lands directly. We turn attention into revenue — built specifically for hospitality and real estate brands that want to win their market.",
   primaryCta: { label: "Book a Strategy Call", href: "/contact" },
-  secondaryCta: { label: "See our work", href: "/#work" },
+  secondaryCta: { label: "See our work", href: "/work" },
   images: [
     {
       src: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80",
@@ -318,7 +318,7 @@ export const testimonials: Testimonial[] = [
   {
     quote:
       "Our midweek covers used to keep me up at night. Now there’s a waitlist for the chef’s table on a Tuesday. They understand hospitality.",
-    name: "Marco Bianchi",
+    name: "Kate Effiong",
     role: "Owner",
     brand: "Maréa Lounge",
     image:
@@ -327,7 +327,7 @@ export const testimonials: Testimonial[] = [
   {
     quote:
       "We were sold out three months before the show home opened. Matombo built the demand while we were still pouring concrete.",
-    name: "Lena Fischer",
+    name: "Ellty Lokoja",
     role: "Development Director",
     brand: "Northbank Residences",
     image:
