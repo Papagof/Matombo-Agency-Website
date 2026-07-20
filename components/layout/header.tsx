@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 import { navItems } from "@/lib/content";
@@ -11,8 +12,13 @@ import { Logo } from "@/components/layout/logo";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 
 export function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+
+  function isActive(href: string) {
+    return pathname === href || pathname.startsWith(`${href}/`);
+  }
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -49,7 +55,13 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              aria-current={isActive(item.href) ? "page" : undefined}
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-foreground",
+                isActive(item.href)
+                  ? "text-foreground underline decoration-gold decoration-2 underline-offset-[10px]"
+                  : "text-muted-foreground"
+              )}
             >
               {item.label}
             </Link>
@@ -89,7 +101,13 @@ export function Header() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="rounded-md px-2 py-3 text-lg font-medium text-foreground/90 transition-colors hover:bg-secondary"
+              aria-current={isActive(item.href) ? "page" : undefined}
+              className={cn(
+                "rounded-md border-l-2 px-2 py-3 text-lg font-medium transition-colors hover:bg-secondary",
+                isActive(item.href)
+                  ? "border-gold text-foreground"
+                  : "border-transparent text-foreground/90"
+              )}
             >
               {item.label}
             </Link>
