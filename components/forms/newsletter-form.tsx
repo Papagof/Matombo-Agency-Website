@@ -17,6 +17,7 @@ type FormValues = z.infer<typeof schema>;
 
 export function NewsletterForm() {
   const [done, setDone] = React.useState(false);
+  const [serverError, setServerError] = React.useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -25,13 +26,20 @@ export function NewsletterForm() {
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
   async function onSubmit(values: FormValues) {
-    // Placeholder: log the subscription. Wire to your ESP later.
-    await new Promise((r) => setTimeout(r, 700));
-    // eslint-disable-next-line no-console
-    console.log("Newsletter signup:", values.email);
-    setDone(true);
-    reset();
-    setTimeout(() => setDone(false), 4000);
+    setServerError(null);
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setDone(true);
+      reset();
+      setTimeout(() => setDone(false), 4000);
+    } catch {
+      setServerError("Something went wrong. Please try again.");
+    }
   }
 
   return (
@@ -67,6 +75,9 @@ export function NewsletterForm() {
       </div>
       {errors.email && (
         <p className="mt-2 text-sm text-destructive">{errors.email.message}</p>
+      )}
+      {serverError && (
+        <p className="mt-2 text-sm text-destructive">{serverError}</p>
       )}
       {done && (
         <p className="mt-2 text-sm text-primary">

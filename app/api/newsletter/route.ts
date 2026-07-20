@@ -1,16 +1,10 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import { industryOptions, budgetOptions } from "@/lib/content";
 import { supabasePublic as supabase } from "@/lib/supabase/public";
 
-const contactSchema = z.object({
-  name: z.string().min(2),
+const newsletterSchema = z.object({
   email: z.string().email(),
-  business: z.string().min(2),
-  industry: z.enum(industryOptions),
-  budget: z.enum(budgetOptions),
-  message: z.string().min(10),
 });
 
 export async function POST(request: Request) {
@@ -24,7 +18,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const parsed = contactSchema.safeParse(body);
+  const parsed = newsletterSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json(
       { ok: false, error: "Validation failed", issues: parsed.error.flatten() },
@@ -32,20 +26,16 @@ export async function POST(request: Request) {
     );
   }
 
-  const { error } = await supabase.from("leads").insert({
-    name: parsed.data.name,
-    email: parsed.data.email,
-    business: parsed.data.business,
-    industry: parsed.data.industry,
-    budget: parsed.data.budget,
-    message: parsed.data.message,
-  });
+  const { error } = await supabase
+    .from("newsletter_subscribers")
+    .insert({ email: parsed.data.email });
 
-  if (error) {
+  // Ignore duplicate-email conflicts — the visitor is already subscribed.
+  if (error && error.code !== "23505") {
     // eslint-disable-next-line no-console
-    console.error("Failed to save lead:", error);
+    console.error("Failed to save newsletter signup:", error);
     return NextResponse.json(
-      { ok: false, error: "Failed to save submission" },
+      { ok: false, error: "Failed to save signup" },
       { status: 500 }
     );
   }

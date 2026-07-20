@@ -1,9 +1,6 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
 import readingTime from "reading-time";
 
-const BLOG_DIR = path.join(process.cwd(), "content", "blog");
+import { supabasePublic } from "@/lib/supabase/public";
 
 export type PostFrontmatter = {
   title: string;
@@ -24,39 +21,61 @@ export type Post = PostMeta & {
   content: string;
 };
 
-function getFiles(): string[] {
-  if (!fs.existsSync(BLOG_DIR)) return [];
-  return fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".mdx"));
-}
+type BlogPostRow = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  tags: string[];
+  cover: string;
+  cover_alt: string;
+  published_at: string;
+};
 
-export function getAllPosts(): PostMeta[] {
-  return getFiles()
-    .map((file) => {
-      const slug = file.replace(/\.mdx$/, "");
-      const raw = fs.readFileSync(path.join(BLOG_DIR, file), "utf-8");
-      const { data, content } = matter(raw);
-      return {
-        slug,
-        readingTime: readingTime(content).text,
-        ...(data as PostFrontmatter),
-      };
-    })
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
-}
-
-export function getPostBySlug(slug: string): Post | null {
-  const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
-  if (!fs.existsSync(filePath)) return null;
-  const raw = fs.readFileSync(filePath, "utf-8");
-  const { data, content } = matter(raw);
+function toPostMeta(row: BlogPostRow): PostMeta {
   return {
-    slug,
-    readingTime: readingTime(content).text,
-    content,
-    ...(data as PostFrontmatter),
+    slug: row.slug,
+    title: row.title,
+    excerpt: row.excerpt,
+    date: row.published_at,
+    author: row.author,
+    tags: row.tags,
+    cover: row.cover,
+    coverAlt: row.cover_alt,
+    readingTime: readingTime(row.content).text,
   };
 }
 
-export function getAllSlugs(): string[] {
-  return getFiles().map((f) => f.replace(/\.mdx$/, ""));
+export async function getAllPosts(): Promise<PostMeta[]> {
+  const { data, error } = await supabasePublic
+    .from("blog_posts")
+    .select("slug, title, excerpt, content, author, tags, cover, cover_alt, published_at")
+    .eq("published", true)
+    .order("published_at", { ascending: false });
+
+  if (error || !data) return [];
+  return data.map(toPostMeta);
+}
+
+export async function getPostBySlug(slug: string): Promise<Post | null> {
+  const { data, error } = await supabasePublic
+    .from("blog_posts")
+    .select("slug, title, excerpt, content, author, tags, cover, cover_alt, published_at")
+    .eq("slug", slug)
+    .eq("published", true)
+    .maybeSingle();
+
+  if (error || !data) return null;
+  return { ...toPostMeta(data), content: data.content };
+}
+
+export async function getAllSlugs(): Promise<string[]> {
+  const { data, error } = await supabasePublic
+    .from("blog_posts")
+    .select("slug")
+    .eq("published", true);
+
+  if (error || !data) return [];
+  return data.map((row) => row.slug);
 }

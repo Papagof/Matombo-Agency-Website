@@ -15,8 +15,8 @@ export const metadata: Metadata = {
     "Hospitality marketing playbooks from Matombo Agency — direct bookings, restaurant growth, and real estate pre-launch strategy.",
 };
 
-export default function BlogPage() {
-  const posts = getAllPosts();
+export default async function BlogPage() {
+  const posts = await getAllPosts();
   const [featured, ...rest] = posts;
 
   return (

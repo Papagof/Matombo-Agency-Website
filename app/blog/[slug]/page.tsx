@@ -11,12 +11,13 @@ import { MdxContent } from "@/components/mdx-content";
 
 type Props = { params: { slug: string } };
 
-export function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }));
+export async function generateStaticParams() {
+  const slugs = await getAllSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
-  const post = getPostBySlug(params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = await getPostBySlug(params.slug);
   if (!post) return {};
   return {
     title: post.title,
@@ -31,11 +32,12 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export default function BlogPostPage({ params }: Props) {
-  const post = getPostBySlug(params.slug);
+export default async function BlogPostPage({ params }: Props) {
+  const post = await getPostBySlug(params.slug);
   if (!post) notFound();
 
-  const related = getAllPosts()
+  const allPosts = await getAllPosts();
+  const related = allPosts
     .filter((p) => p.slug !== post.slug)
     .slice(0, 2);
 
