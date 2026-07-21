@@ -20,6 +20,7 @@ export const siteConfig = {
   tagline: "Growth marketing for hospitality brands.",
   email: "contact@matomboagency.com",
   phones: ["+234 802 313 6685", "+234 706 592 8485"],
+  whatsapp: "+234 802 313 6685",
   address:
     "6 Peace Close, Happyland Estate, Lekki/Epe Expressway, Lagos, Nigeria",
   socials: {

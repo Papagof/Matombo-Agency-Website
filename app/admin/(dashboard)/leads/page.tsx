@@ -9,6 +9,7 @@ type Lead = {
   id: string;
   name: string;
   email: string;
+  phone: string | null;
   business: string;
   industry: string;
   budget: string;
@@ -70,10 +71,18 @@ export default async function AdminLeadsPage() {
                       <div className="font-medium">{lead.name}</div>
                       <a
                         href={`mailto:${lead.email}`}
-                        className="text-muted-foreground hover:text-foreground"
+                        className="block text-muted-foreground hover:text-foreground"
                       >
                         {lead.email}
                       </a>
+                      {lead.phone && (
+                        <a
+                          href={`tel:${lead.phone.replace(/[^+\d]/g, "")}`}
+                          className="block text-muted-foreground hover:text-foreground"
+                        >
+                          {lead.phone}
+                        </a>
+                      )}
                     </td>
                     <td className="px-4 py-4 align-top">{lead.business}</td>
                     <td className="px-4 py-4 align-top">{lead.industry}</td>

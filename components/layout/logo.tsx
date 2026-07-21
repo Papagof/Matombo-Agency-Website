@@ -15,10 +15,10 @@ export function Logo({ className }: { className?: string }) {
         aria-hidden
         className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold transition-transform group-hover:scale-105"
       >
-        M
+        MA
       </span>
       <span>
-        Matombo<span className="text-gold">.</span>
+        Matombo Agency Lagos<span className="text-gold">.</span>
       </span>
     </Link>
   );

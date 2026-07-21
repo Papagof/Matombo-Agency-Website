@@ -22,6 +22,10 @@ import {
 const schema = z.object({
   name: z.string().min(2, "Please enter your name"),
   email: z.string().email("Enter a valid email address"),
+  phone: z
+    .string()
+    .min(7, "Enter a valid phone number")
+    .regex(/^[+\d][\d\s-]*$/, "Enter a valid phone number"),
   business: z.string().min(2, "Tell us your property or business name"),
   industry: z.enum(industryOptions, {
     errorMap: () => ({ message: "Select an industry" }),
@@ -102,6 +106,16 @@ export function ContactForm() {
           />
         </Field>
       </div>
+
+      <Field label="Phone number" htmlFor="phone" error={errors.phone?.message}>
+        <Input
+          id="phone"
+          type="tel"
+          placeholder="+234 802 313 6685"
+          autoComplete="tel"
+          {...register("phone")}
+        />
+      </Field>
 
       <Field
         label="Property / business name"
