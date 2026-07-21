@@ -1,7 +1,6 @@
-import { createClient } from "@/lib/supabase/server";
-import { formatDate } from "@/lib/utils";
-
-import { LeadStatusSelect } from "./lead-status-select";
+import { listLeads } from "@/backend/services/leads";
+import { formatDate } from "@/frontend/utils";
+import { LeadStatusSelect } from "@/frontend/components/admin/lead-status-select";
 
 export const dynamic = "force-dynamic";
 
@@ -19,11 +18,7 @@ type Lead = {
 };
 
 export default async function AdminLeadsPage() {
-  const supabase = createClient();
-  const { data: leads, error } = await supabase
-    .from("leads")
-    .select("*")
-    .order("created_at", { ascending: false });
+  const { data: leads, error } = await listLeads();
 
   return (
     <div>

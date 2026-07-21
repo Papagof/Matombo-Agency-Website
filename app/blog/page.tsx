@@ -3,11 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { Clock } from "lucide-react";
 
-import { getAllPosts } from "@/lib/blog";
-import { formatDate } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { PageHero } from "@/components/page-hero";
-import { StaggerGroup, StaggerItem } from "@/components/reveal";
+import { getAllPosts } from "@/backend/services/blog";
+import { formatDate } from "@/frontend/utils";
+import { Badge } from "@/frontend/components/ui/badge";
+import { PageHero } from "@/frontend/components/page-hero";
+import { StaggerGroup, StaggerItem } from "@/frontend/components/reveal";
 
 export const metadata: Metadata = {
   title: "Blog",

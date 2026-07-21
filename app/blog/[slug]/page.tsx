@@ -4,10 +4,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock } from "lucide-react";
 
-import { getAllSlugs, getPostBySlug, getAllPosts } from "@/lib/blog";
-import { formatDate } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { MdxContent } from "@/components/mdx-content";
+import { getAllSlugs, getPostBySlug, getAllPosts } from "@/backend/services/blog";
+import { formatDate } from "@/frontend/utils";
+import { Badge } from "@/frontend/components/ui/badge";
+import { MdxContent } from "@/frontend/components/mdx-content";
 
 type Props = { params: { slug: string } };
 

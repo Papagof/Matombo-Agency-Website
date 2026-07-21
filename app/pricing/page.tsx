@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
-import { PageHero } from "@/components/page-hero";
-import { Pricing } from "@/components/sections/pricing";
-import { Faq } from "@/components/sections/faq";
-import { CtaBanner } from "@/components/sections/cta-banner";
+import { PageHero } from "@/frontend/components/page-hero";
+import { Pricing } from "@/frontend/components/sections/pricing";
+import { Faq } from "@/frontend/components/sections/faq";
+import { CtaBanner } from "@/frontend/components/sections/cta-banner";
 
 export const metadata: Metadata = {
   title: "Pricing",

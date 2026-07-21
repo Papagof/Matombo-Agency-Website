@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 
-import { industries } from "@/lib/content";
-import { Button } from "@/components/ui/button";
-import { PageHero } from "@/components/page-hero";
-import { Reveal } from "@/components/reveal";
-import { CtaBanner } from "@/components/sections/cta-banner";
+import { industries } from "@/frontend/content";
+import { Button } from "@/frontend/components/ui/button";
+import { PageHero } from "@/frontend/components/page-hero";
+import { Reveal } from "@/frontend/components/reveal";
+import { CtaBanner } from "@/frontend/components/sections/cta-banner";
 
 export const metadata: Metadata = {
   title: "Industries",

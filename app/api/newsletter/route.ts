@@ -1,11 +1,7 @@
 import { NextResponse } from "next/server";
-import { z } from "zod";
 
-import { supabasePublic as supabase } from "@/lib/supabase/public";
-
-const newsletterSchema = z.object({
-  email: z.string().email(),
-});
+import { newsletterSchema } from "@/backend/validation/newsletter";
+import { insertSubscriber } from "@/backend/services/newsletter";
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -26,9 +22,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const { error } = await supabase
-    .from("newsletter_subscribers")
-    .insert({ email: parsed.data.email });
+  const { error } = await insertSubscriber(parsed.data.email);
 
   // Ignore duplicate-email conflicts — the visitor is already subscribed.
   if (error && error.code !== "23505") {

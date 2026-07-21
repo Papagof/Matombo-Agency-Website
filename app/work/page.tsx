@@ -3,11 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
-import { caseStudies } from "@/lib/content";
-import { Badge } from "@/components/ui/badge";
-import { PageHero } from "@/components/page-hero";
-import { StaggerGroup, StaggerItem } from "@/components/reveal";
-import { CtaBanner } from "@/components/sections/cta-banner";
+import { caseStudies } from "@/frontend/content";
+import { Badge } from "@/frontend/components/ui/badge";
+import { PageHero } from "@/frontend/components/page-hero";
+import { StaggerGroup, StaggerItem } from "@/frontend/components/reveal";
+import { CtaBanner } from "@/frontend/components/sections/cta-banner";
 
 export const metadata: Metadata = {
   title: "Work",

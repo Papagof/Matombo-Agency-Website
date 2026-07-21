@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
-import { services } from "@/lib/content";
-import { PageHero } from "@/components/page-hero";
-import { StaggerGroup, StaggerItem } from "@/components/reveal";
-import { CtaBanner } from "@/components/sections/cta-banner";
+import { services } from "@/frontend/content";
+import { PageHero } from "@/frontend/components/page-hero";
+import { StaggerGroup, StaggerItem } from "@/frontend/components/reveal";
+import { CtaBanner } from "@/frontend/components/sections/cta-banner";
 
 export const metadata: Metadata = {
   title: "Services",

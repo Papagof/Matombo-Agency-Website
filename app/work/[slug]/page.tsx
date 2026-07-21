@@ -4,10 +4,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-import { caseStudies } from "@/lib/content";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { CtaBanner } from "@/components/sections/cta-banner";
+import { caseStudies } from "@/frontend/content";
+import { Badge } from "@/frontend/components/ui/badge";
+import { Button } from "@/frontend/components/ui/button";
+import { CtaBanner } from "@/frontend/components/sections/cta-banner";
 
 type Props = { params: { slug: string } };
 

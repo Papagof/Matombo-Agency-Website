@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Mail, MapPin, Phone } from "lucide-react";
 
-import { siteConfig } from "@/lib/content";
-import { PageHero } from "@/components/page-hero";
-import { ContactForm } from "@/components/forms/contact-form";
+import { siteConfig } from "@/frontend/content";
+import { PageHero } from "@/frontend/components/page-hero";
+import { ContactForm } from "@/frontend/components/forms/contact-form";
 
 const whatsappDigits = siteConfig.whatsapp.replace(/\D/g, "");
 const whatsappHref = `https://wa.me/${whatsappDigits}?text=${encodeURIComponent(

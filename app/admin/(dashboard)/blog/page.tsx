@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { Plus, Pencil } from "lucide-react";
 
-import { createClient } from "@/lib/supabase/server";
-import { formatDate } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-
-import { DeletePostButton } from "./delete-post-button";
+import { listAdminPosts } from "@/backend/services/blog";
+import { formatDate } from "@/frontend/utils";
+import { Badge } from "@/frontend/components/ui/badge";
+import { Button } from "@/frontend/components/ui/button";
+import { DeletePostButton } from "@/frontend/components/admin/delete-post-button";
 
 export const dynamic = "force-dynamic";
 
@@ -20,11 +19,7 @@ type BlogPostRow = {
 };
 
 export default async function AdminBlogPage() {
-  const supabase = createClient();
-  const { data: posts, error } = await supabase
-    .from("blog_posts")
-    .select("id, slug, title, author, published, updated_at")
-    .order("published_at", { ascending: false });
+  const { data: posts, error } = await listAdminPosts();
 
   return (
     <div>

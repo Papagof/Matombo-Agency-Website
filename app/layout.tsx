@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { Inter, Fraunces } from "next/font/google";
 
 import "./globals.css";
-import { siteConfig } from "@/lib/content";
-import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/layout/theme-provider";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
+import { siteConfig } from "@/frontend/content";
+import { cn } from "@/frontend/utils";
+import { ThemeProvider } from "@/frontend/components/layout/theme-provider";
+import { Header } from "@/frontend/components/layout/header";
+import { Footer } from "@/frontend/components/layout/footer";
 
 const inter = Inter({
   subsets: ["latin"],

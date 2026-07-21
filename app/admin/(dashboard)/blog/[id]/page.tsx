@@ -1,21 +1,15 @@
 import { notFound } from "next/navigation";
 
-import { createClient } from "@/lib/supabase/server";
-
-import { updatePost } from "../actions";
-import { PostForm, type PostFormValues } from "../post-form";
+import { getPostById } from "@/backend/services/blog";
+import { updatePost } from "@/backend/actions/blog";
+import { PostForm, type PostFormValues } from "@/frontend/components/admin/post-form";
 
 export default async function EditBlogPostPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const supabase = createClient();
-  const { data: post } = await supabase
-    .from("blog_posts")
-    .select("id, slug, title, excerpt, content, author, cover, cover_alt, tags, published")
-    .eq("id", params.id)
-    .maybeSingle();
+  const { data: post } = await getPostById(params.id);
 
   if (!post) notFound();
 

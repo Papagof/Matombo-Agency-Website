@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { stats, processSteps } from "@/lib/content";
-import { Button } from "@/components/ui/button";
-import { PageHero } from "@/components/page-hero";
-import { AnimatedCounter } from "@/components/animated-counter";
-import { Reveal, StaggerGroup, StaggerItem } from "@/components/reveal";
+import { stats, processSteps } from "@/frontend/content";
+import { Button } from "@/frontend/components/ui/button";
+import { PageHero } from "@/frontend/components/page-hero";
+import { AnimatedCounter } from "@/frontend/components/animated-counter";
+import { Reveal, StaggerGroup, StaggerItem } from "@/frontend/components/reveal";
 
 export const metadata: Metadata = {
   title: "About",

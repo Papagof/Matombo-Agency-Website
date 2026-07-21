@@ -1,5 +1,5 @@
-import { createPost } from "../actions";
-import { PostForm } from "../post-form";
+import { createPost } from "@/backend/actions/blog";
+import { PostForm } from "@/frontend/components/admin/post-form";
 
 export default function NewBlogPostPage() {
   return (

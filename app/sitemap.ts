@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
-import { siteConfig, caseStudies } from "@/lib/content";
-import { getAllPosts } from "@/lib/blog";
+import { siteConfig, caseStudies } from "@/frontend/content";
+import { getAllPosts } from "@/backend/services/blog";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteConfig.url;

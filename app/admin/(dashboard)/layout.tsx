@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { LogOut } from "lucide-react";
 
-import { signOut } from "./actions";
+import { signOut } from "@/backend/actions/auth";
 
 export default function AdminDashboardLayout({
   children,
